@@ -15,7 +15,7 @@ const EthProvider = new ethers_1.ethers.JsonRpcProvider("https://sepolia.infura.
 const BscProvider = new ethers_1.ethers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
 // Set Contract Addresses
 const EthBridgeAddress = "0xc25c364456a5Bbb9a9fc7D12623A11Fb52CA4027";
-const BscBridgeAddress = "0xaA090c176DBcA6D8b46246fB21950D6E1f53351A";
+const BscBridgeAddress = "0xeDE1Be7b36878D1Aa0C7Fe3fDbfC2F8241b9FA7A";
 // Get the signer's address
 const signerEth = new ethers_1.ethers.Wallet(EthBridgeAdminPrivateKey, EthProvider);
 // Load Bridge Contracts
@@ -35,6 +35,7 @@ async function main() {
       - date ${date}
       - nonce ${nonce}
     `);
+        console.log("Searching...");
     });
 }
 // We recommend this pattern to be able to use async/await everywhere

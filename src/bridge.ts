@@ -12,8 +12,8 @@ const EthProvider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/" +
 const BscProvider = new ethers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
 
 // Set Contract Addresses
-const EthBridgeAddress = "0xc25c364456a5Bbb9a9fc7D12623A11Fb52CA4027";
-const BscBridgeAddress = "0xaA090c176DBcA6D8b46246fB21950D6E1f53351A";
+const EthBridgeAddress = "0xc14F24cf3768a0997E39aE11F288Ea421485EF54";
+const BscBridgeAddress = "0xc14F24cf3768a0997E39aE11F288Ea421485EF54";
 
 // Get the signer's address
 const signerEth = new ethers.Wallet(EthBridgeAdminPrivateKey!, EthProvider);
@@ -41,6 +41,7 @@ async function main() {
       - date ${date}
       - nonce ${nonce}
     `);
+        console.log("Searching...");
     });
 }
 
