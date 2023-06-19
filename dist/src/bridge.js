@@ -14,8 +14,8 @@ const EthBridgeAdminPrivateKey = process.env.ETH_PRIVATE_KEY;
 const EthProvider = new ethers_1.ethers.JsonRpcProvider("https://sepolia.infura.io/v3/" + process.env.INFURA_API_KEY);
 const BscProvider = new ethers_1.ethers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
 // Set Contract Addresses
-const EthBridgeAddress = "0xc25c364456a5Bbb9a9fc7D12623A11Fb52CA4027";
-const BscBridgeAddress = "0xeDE1Be7b36878D1Aa0C7Fe3fDbfC2F8241b9FA7A";
+const EthBridgeAddress = "0xc14F24cf3768a0997E39aE11F288Ea421485EF54";
+const BscBridgeAddress = "0xc14F24cf3768a0997E39aE11F288Ea421485EF54";
 // Get the signer's address
 const signerEth = new ethers_1.ethers.Wallet(EthBridgeAdminPrivateKey, EthProvider);
 // Load Bridge Contracts
