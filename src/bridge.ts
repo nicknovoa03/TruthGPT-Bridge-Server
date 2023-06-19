@@ -5,11 +5,18 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Set private key for EthBridge Admin
-const EthBridgeAdminPrivateKey = process.env.ETH_PRIVATE_KEY;
+const EthBridgeAdminPrivateKey = process.env.ETH_TEST_PRIVATE_KEY;
 
 // Set Providers
-const EthProvider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/" + process.env.INFURA_API_KEY);
-const BscProvider = new ethers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
+let EthProvider = new ethers.JsonRpcProvider("https://infura.io/v3/" + process.env.INFURA_API_KEY);
+let BscProvider = new ethers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+
+// Set Providers
+let EthTestProvider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/" + process.env.INFURA_API_KEY);
+let BscTestProvider = new ethers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
+
+EthProvider = EthTestProvider
+BscProvider = BscTestProvider
 
 // Set Contract Addresses
 const EthBridgeAddress = "0x0aaFfD6fb69cfc591e775c6A4D10Ab43b32bEBd1";
