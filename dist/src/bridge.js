@@ -21,12 +21,12 @@ BscProvider = BscTestProvider;
 // Set Contract Addresses
 let EthBridgeAddress = "0xc14F24cf3768a0997E39aE11F288Ea421485EF54";
 let BscBridgeAddress = "0x9Af4010CCAFAd067ff8b961eC94371fc805823b5";
-// Set Contract Addresses
+// Set Test Contract Addresses
 let EthTestBridgeAddress = "0x0aaFfD6fb69cfc591e775c6A4D10Ab43b32bEBd1";
 ;
 let BscTestBridgeAddress = "0xE12D1a1Abbc5f3a9FF0CdEeD2Bb238d86D6620A5";
-EthBridgeAddress = EthTestBridgeAddress;
-BscBridgeAddress = BscTestBridgeAddress;
+//EthBridgeAddress = EthTestBridgeAddress;
+//BscBridgeAddress = BscTestBridgeAddress;
 // Get the signer's address
 const signerEth = new ethers_1.ethers.Wallet(EthBridgeAdminPrivateKey, EthProvider);
 // Load Bridge Contracts
