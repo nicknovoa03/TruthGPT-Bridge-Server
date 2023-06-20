@@ -15,7 +15,7 @@ const testing = args[0] === 'true'; // Example: Accept "true" as testing value
 let EthBridgeAdminPrivateKey = process.env.ETH_PRIVATE_KEY;
 let EthTestBridgeAdminPrivateKey = process.env.ETH_TEST_PRIVATE_KEY;
 // Set Providers
-let EthProvider = new ethers_1.ethers.JsonRpcProvider("https://infura.io/v3/" + process.env.INFURA_API_KEY);
+let EthProvider = new ethers_1.ethers.JsonRpcProvider("https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY);
 let BscProvider = new ethers_1.ethers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
 let EthTestProvider = new ethers_1.ethers.JsonRpcProvider("https://sepolia.infura.io/v3/" + process.env.INFURA_API_KEY);
 let BscTestProvider = new ethers_1.ethers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545");
