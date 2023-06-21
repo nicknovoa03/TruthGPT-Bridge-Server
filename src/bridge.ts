@@ -2,6 +2,7 @@ import { ethers } from 'ethers';
 import BridgeBsc from '../artifacts/contracts/BridgeBsc.sol/BridgeBsc.json'
 import BridgeEth from '../artifacts/contracts/BridgeEth.sol/BridgeEth.json'
 import dotenv from 'dotenv';
+import { test } from 'node:test';
 dotenv.config();
 
 // parse input
@@ -46,7 +47,11 @@ const bridgeBsc = new ethers.Contract(BscBridgeAddress, BridgeBsc.abi, BscProvid
 async function main() {
     try {
         console.log("Initializing");
-        console.log(testing)
+        if (testing) {
+            console.log("Test Net")
+        } else {
+            console.log("Main net")
+        }
         bridgeBsc.on("Transfer", async (from, to, amount, date, nonce, step) => {
             console.log("Transfer Found!");
 

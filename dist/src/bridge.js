@@ -41,7 +41,12 @@ const bridgeBsc = new ethers_1.ethers.Contract(BscBridgeAddress, BridgeBsc_json_
 async function main() {
     try {
         console.log("Initializing");
-        console.log(testing);
+        if (testing) {
+            console.log("Test Net");
+        }
+        else {
+            console.log("Main net");
+        }
         bridgeBsc.on("Transfer", async (from, to, amount, date, nonce, step) => {
             console.log("Transfer Found!");
             const tx = await bridgeEth.tokenTransfer(to, amount, nonce);
