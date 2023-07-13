@@ -97,13 +97,11 @@ async function main() {
                     const tx = await bridgeEth.tokenTransfer(to, amount, nonce);
                     console.log(`Eth Transaction hash: ${tx.hash}`);
                 }
-
-
             } catch (error) {
                 if ((error as Error)) {
-                    console.error((error as Error).message.charAt(1))
+                    console.error(error)
                 } else {
-                    console.log("mama")
+                    console.log("error")
                 }
             }
             console.log("Searching...");

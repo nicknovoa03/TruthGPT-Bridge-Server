@@ -92,10 +92,10 @@ async function main() {
             }
             catch (error) {
                 if (error) {
-                    console.error(error.message.charAt(1));
+                    console.error(error);
                 }
                 else {
-                    console.log("mama");
+                    console.log("error");
                 }
             }
             console.log("Searching...");
