@@ -1,8 +1,8 @@
 import { ethers } from 'ethers';
 import BridgeBsc from '../artifacts/contracts/BridgeBsc.sol/BridgeBsc.json'
 import BridgeEth from '../artifacts/contracts/BridgeEth.sol/BridgeEth.json'
+import { SnapshotsDictionary } from './BscTruthHolders';
 import dotenv from 'dotenv';
-import { test } from 'node:test';
 dotenv.config();
 
 // parse input
@@ -44,6 +44,30 @@ const bridgeEth = new ethers.Contract(EthBridgeAddress, BridgeEth.abi, signerEth
 
 const bridgeBsc = new ethers.Contract(BscBridgeAddress, BridgeBsc.abi, BscProvider);
 
+//function to check if address is in snapshot and check amount sent
+function checkSnapshot(address: string, amount: string) {
+    if (!address) {
+        console.log("invalid address")
+        return false
+    }
+    else if (!SnapshotsDictionary.hasOwnProperty(address)) {
+        console.log("address not in snapshot", address)
+        return false
+    }
+    // return false if sent amount is greater than snapshot amount
+    else if (Number(amount) > Number(SnapshotsDictionary[address])) {
+        console.log("sent amount:", amount)
+        console.log("snapshout amount:", Number(SnapshotsDictionary[address]))
+        console.log("amount sent more than allowed")
+        return false
+    }
+    else {
+        return true
+    }
+}
+
+
+
 async function main() {
     try {
         console.log("Initializing");
@@ -54,22 +78,37 @@ async function main() {
         }
         bridgeBsc.on("Transfer", async (from, to, amount, date, nonce, step) => {
             console.log("Transfer Found!");
+            try {
+                console.log(`
+                Processing transfer:
+                - from ${from} 
+                - to ${to} 
+                - amount ${amount} tokens
+                - date ${date}
+                - nonce ${nonce}
+                `);
 
-            const tx = await bridgeEth.tokenTransfer(to, amount, nonce);
+                const recipient: string = from
+                const bridgeAmount: string = amount
+                if (!checkSnapshot(recipient.toLocaleLowerCase(), ethers.formatEther(bridgeAmount))) {
+                    console.log("Eth Bridge TX Rejected")
+                }
+                else {
+                    const tx = await bridgeEth.tokenTransfer(to, amount, nonce);
+                    console.log(`Eth Transaction hash: ${tx.hash}`);
+                }
 
-            console.log(`Eth Transaction hash: ${tx.hash}`);
-            console.log(`
-          Processed transfer:
-          - from ${from} 
-          - to ${to} 
-          - amount ${amount} tokens
-          - date ${date}
-          - nonce ${nonce}
-        `);
+
+            } catch (error) {
+                if ((error as Error)) {
+                    console.error((error as Error).message.charAt(1))
+                } else {
+                    console.log("mama")
+                }
+            }
             console.log("Searching...");
         });
     } catch (error) {
-        console.error(error);
         // Restart the main function
         main().catch(() => {
             process.exitCode = 1;
